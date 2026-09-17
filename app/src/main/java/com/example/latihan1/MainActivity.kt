@@ -1,8 +1,9 @@
 package com.example.latihan1
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -11,14 +12,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val editTextInput = findViewById<EditText>(R.id.editTextInput)
         val buttonClick = findViewById<Button>(R.id.buttonClick)
 
         buttonClick.setOnClickListener {
-            Toast.makeText(
-                this,
-                "Tombol berhasil diklik!",
-                Toast.LENGTH_SHORT
-            ).show()
+
+            val textInput = editTextInput.text.toString()
+
+            val intent = Intent(this, Activity2::class.java)
+
+            intent.putExtra("TEXT_INPUT", textInput)
+
+            startActivity(intent)
         }
     }
 }
